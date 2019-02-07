@@ -11,7 +11,7 @@
   <% @gossipall.each do |e| %>
   <div class="card" style="width: 18rem;">
   <div class="card-header">
-     <%= e.user.first_name %> <%= e.user.last_name %>
+    <%= e.user.first_name%> <%= e.user.last_name %>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><a href="<%=gossip_path(e.id)%>"><%= e.title %></a></li>
@@ -21,7 +21,7 @@
 </div>
 
   <br><br>
-  <%end%>
+  <% end%>
 </div>
 
 

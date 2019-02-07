@@ -11,7 +11,7 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><U><h2>Gossip n° <%=g.id%> </h2></U></li>
     <li class="list-group-item"><h5>DATE DE CRÉATION : </h5><%=  g.created_at.asctime   %></li>
-    <li class="list-group-item"><h5>AUTEUR :</h5><a href="<%=users_path(g.user.id)%>"><%=  g.user.first_name   %> <%=  g.user.last_name   %></a></li>
+    <li class="list-group-item"><h5>AUTEUR :</h5><a href="<%=user_path(g.user.id)%>"><%=  g.user.first_name   %> <%=  g.user.last_name   %></a></li>
     <li class="list-group-item"><h5>VILLE DE L'AUTEUR : </h5><a href="<%=city_path(g.user.city.id)%>"><%=  g.user.city.name   %></a></li>
     <li class="list-group-item"><h5>SUJET : </h5><%=  g.title   %></li>
     <li class="list-group-item"><h5>CONTENU : </h5> <%=  g.content   %></li>

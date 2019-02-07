@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
   def home
    @gossipall = Gossip.all
- end
+  end
 
  def contact
  end
