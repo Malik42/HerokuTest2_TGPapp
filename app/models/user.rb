@@ -10,8 +10,8 @@ presence: true
 presence: true
  belongs_to :city
  has_many :comments
- # has_secure_password
- # validates :password, presence: true, length: { minimum: 3 }
+ has_secure_password
+ validates :password, presence: true, length: { minimum: 3 }
 
 
   end
