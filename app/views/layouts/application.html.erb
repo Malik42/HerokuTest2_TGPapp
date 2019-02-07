@@ -21,10 +21,20 @@
           <a class="p-2 text-white" href="<%=static_pages_team_path%>">Team</a>
           <a class="p-2 text-white" href="<%=static_pages_contact_path%>">Contact</a>
           <a class="p-2 text-white" >||</a>
+          <% if current_user %>
+          <a class="p-2 text-white" href="<%=session_path(current_user.id)%>" data-confirm="Au revoir ?" data-method="delete">Déconnection</a>
+          <% else %>
           <a class="p-2 text-white" href="<%=new_user_path%>">Inscription</a>
           <a class="p-2 text-white" href="<%=new_session_path%>">Connexion</a>
+          <% end %>
         </nav>
     </header>
+    <% if current_user %>
+    <nav class="navbar navbar-light bg-light">
+     <h5>Vous êtes connecté en tant que : <%= current_user.last_name.capitalize %> <%= current_user.first_name.capitalize %> </h5>
+   </nav>
+    <% end %>
+
 
     <%= yield %>
     <br><br>

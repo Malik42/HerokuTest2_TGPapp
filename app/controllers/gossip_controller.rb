@@ -1,4 +1,8 @@
 class GossipController < ApplicationController
+  before_action :authenticate_user, only: [:new ,:edit , :destroy]
+
+
+
 
   def show
     # Méthode qui récupère le potin concerné et l'envoie à la view show (show.html.erb) pour affichage
@@ -18,7 +22,11 @@ class GossipController < ApplicationController
 
   def create
     c = City.create(name:"UNKNOWN", zip_code: "XXXXX")
-    yolo = User.create(first_name: "ANONYMOUS" , last_name: "USER", email: "UNKNOWN",  city: c )
+    if current_user
+      yolo =  current_user
+    else
+     yolo = User.create(first_name: "ANONYMOUS" , last_name: "USER", email: "UNKNOWN",  city: c )
+   end
     #yolo.id = 888888
     #yolo.save
     g = Gossip.new(title: params["title"], content: params["content"], user: yolo )
@@ -56,7 +64,6 @@ class GossipController < ApplicationController
     else
       render :edit
     end
-
   end
 
   def destroy
@@ -69,6 +76,15 @@ class GossipController < ApplicationController
   end
 
   private
+
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
+    end
+  end
+
 
   def gossip_params
     params.require(:gossip).permit(:title , :content)

@@ -23,7 +23,10 @@
            <%= text_field_tag 'email', @email, class: "form-control" %>
      </div>
      <br>
-    
+     <div class="form-group" >
+           <%= label_tag 'Age' %>
+           <%= number_field_tag 'age', @age, class: "form-control "  %>
+     </div>
      <br>
      <div class="form ">
            <%= label_tag 'Password' %>

@@ -1,4 +1,5 @@
 class CommentController < ApplicationController
+  before_action :authenticate_user, only: [:new ,:edit , :destroy]
 
   def show
     @comment = Comment.all
@@ -11,9 +12,11 @@ class CommentController < ApplicationController
   def create
 
     c = City.create(name:"UNKNOWN", zip_code: "XXXXX")
-    yolo = User.create(first_name: "ANONYMOUS" , last_name: "USER", email: "UNKNOWN",  city: c )
-    #yolo.id = 888888
-    #yolo.save
+    if current_user
+      yolo =  current_user
+    else
+     yolo = User.create(first_name: "ANONYMOUS" , last_name: "USER", email: "UNKNOWN",  city: c )
+   end
     c = Comment.new(content: params["content"], user: yolo , gossip_id: params["gossip_id"] )
     #params.permit(:title, :content)
     if c.save
@@ -58,6 +61,13 @@ class CommentController < ApplicationController
   end
 
   private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:content)

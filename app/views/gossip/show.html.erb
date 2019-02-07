@@ -35,7 +35,7 @@
 <% arry.each do |c| %>
 <div class="card" style="width: 18rem;">
   <p>  </p>
-    <h5 class="card-title"><%= c.user.first_name %></h5>
+    <h5 class="card-title"><%= c.user.last_name %> <%= c.user.first_name %></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= c.content %></h6>
     <p class="text-secondary">_________________</p>
   <p><a href="<%=edit_gossip_comment_path(g.id,c.id)%>" class="text-secondary btn-sm ">Editer</a> &nbsp;
