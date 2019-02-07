@@ -21,6 +21,7 @@ class UserController < ApplicationController
     @user.save
 
     if @user.save
+      log_in(@user)
       flash[:success] = "Profil bien créé !"
       redirect_to '/static_pages/home'
       puts "INSCRIPTION RÉUSSIE"
