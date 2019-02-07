@@ -1,5 +1,6 @@
 class CommentController < ApplicationController
   before_action :authenticate_user, only: [:new ,:edit , :destroy]
+  before_action :user_match, only: [:edit, :destroy]
 
   def show
     @comment = Comment.all
@@ -68,6 +69,14 @@ class CommentController < ApplicationController
       redirect_to new_session_path
     end
   end
+
+  def user_match
+    @comment = Comment.find(params["id"])
+    unless current_user.id == @comment.user.id
+      flash[:danger] = "You are not allowed."
+      redirect_to '/static_pages/nomatch/'
+    end
+ end
 
   def comment_params
     params.require(:comment).permit(:content)

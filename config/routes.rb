@@ -17,7 +17,7 @@ get 'alert_comment/error/:id', to: 'alert_comment#error',  as: 'commenterror'
   resources :user
   #get 'user/:id', to: 'user#show' , as: 'users'
 
-
+  get 'static_pages/nomatch'
   get 'static_pages/team'
   get 'welcome/:user_entry', to: 'welcome#show'
   get 'static_pages/team'

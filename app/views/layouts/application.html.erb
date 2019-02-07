@@ -22,7 +22,7 @@
           <a class="p-2 text-white" href="<%=static_pages_contact_path%>">Contact</a>
           <a class="p-2 text-white" >||</a>
           <% if current_user %>
-          <a class="p-2 text-white" href="<%=session_path(current_user.id)%>" data-confirm="Au revoir ?" data-method="delete">Déconnection</a>
+          <a class="p-2 text-white" href="<%=session_path(current_user.id)%>" data-confirm="Au revoir ?" data-method="delete">Déconnexion</a>
           <% else %>
           <a class="p-2 text-white" href="<%=new_user_path%>">Inscription</a>
           <a class="p-2 text-white" href="<%=new_session_path%>">Connexion</a>
