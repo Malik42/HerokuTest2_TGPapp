@@ -1,0 +1,29 @@
+
+<center>
+<section>
+  <br>
+<h4><p> The Gossip Project by Lille</p></h4>
+ <br><br>
+<p>Voici la liste des Users // Gossips</p>
+
+<div class="container col-md-8 order-md-1" >
+<div>
+  <% @gossipall.each do |e| %>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header">
+     <%= e.user.first_name %> <%= e.user.last_name %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="<%=gossip_path(e.id)%>"><%= e.title %></a></li>
+  </ul>
+</div>
+<p class="text-muted"><%=e.comments.count%> commentaires</p>
+</div>
+
+  <br><br>
+  <%end%>
+</div>
+
+
+</section>
+</center>

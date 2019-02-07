@@ -1,0 +1,54 @@
+
+
+
+<% g = @grossip.find(params[:id]) %>
+
+<br>
+<center>
+  <h3 class="text-secondary"><U>Gossip Card</U></h3>
+  <br>
+<div class="card" style="width: 22rem;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><U><h2>Gossip n° <%=g.id%> </h2></U></li>
+    <li class="list-group-item"><h5>DATE DE CRÉATION : </h5><%=  g.created_at.asctime   %></li>
+    <li class="list-group-item"><h5>AUTEUR :</h5><a href="<%=users_path(g.user.id)%>"><%=  g.user.first_name   %> <%=  g.user.last_name   %></a></li>
+    <li class="list-group-item"><h5>VILLE DE L'AUTEUR : </h5><a href="<%=city_path(g.user.city.id)%>"><%=  g.user.city.name   %></a></li>
+    <li class="list-group-item"><h5>SUJET : </h5><%=  g.title   %></li>
+    <li class="list-group-item"><h5>CONTENU : </h5> <%=  g.content   %></li>
+    <li class="list-group-item"><a href="<%=edit_gossip_path(g.id)%>" class="text-secondary btn-sm btn btn-outline-secondary">Modifier</a>
+      &nbsp; &nbsp; &nbsp;
+      <a href="<%=gossip_path(g.id)%>" class="text-secondary btn-sm btn btn-outline-secondary" data-confirm="Sur ?" data-method="DELETE" >Supprimer</a>
+</li>
+  </ul>
+</div>
+
+<br>
+
+<a href="<%=new_gossip_comment_path(g.id)%>" class="btn btn-info">Commenter</a>
+
+<br><br>
+<h3 class="text-secondary"><U>Espace Commentaires</U></h3>
+<br>
+<% arry = g.comments %>
+<div class="container col-md-8 order-md-1" >
+
+<% arry.each do |c| %>
+<div class="card" style="width: 18rem;">
+  <p>  </p>
+    <h5 class="card-title"><%= c.user.first_name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= c.content %></h6>
+    <p class="text-secondary">_________________</p>
+  <p><a href="<%=edit_gossip_comment_path(g.id,c.id)%>" class="text-secondary btn-sm ">Editer</a> &nbsp;
+    <a href="<%=gossip_comment_path(g.id,c.id)%>" class="text-secondary btn-sm " data-confirm="Sur ?" data-method="delete">Supprimer</a> </p>
+
+ </div>
+ <br>
+ <%end %>
+  </div>
+
+
+
+
+
+</center>
+<br><br>

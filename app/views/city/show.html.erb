@@ -1,0 +1,33 @@
+<center>
+<% users_by_city = @userall.where(city_id: params[:id]) %>
+
+<% puts "user city name =" %>
+<% puts users_by_city %>
+
+<br>
+<h3>Gossips en provenance de <%= users_by_city[0].city.name %> </h3>
+<br><br>
+<% arr_gossips_city =[] %>
+
+
+<% users_by_city.each do |user| %>
+<% arr_gossips_city << user.gossips %>
+<% end %>
+
+<% puts "arr_gossips_city => " %>
+<% puts arr_gossips_city %>
+
+<div>
+  <% arr_gossips_city.flatten.each do |gossip| %>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header">
+     <%= gossip.user.first_name %> <%= gossip.user.last_name %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="<%=gossip_path(gossip.id)%>"><%= gossip.title %></a></li>
+  </ul>
+</div>
+  <br><br>
+  <%end%>
+</div>
+</center>

@@ -1,0 +1,32 @@
+
+
+<br><br><br>
+
+<center>
+<div class="card bg-light" style="width: 30rem;"  >
+<div class="card-body">
+
+<h4><p>Poster un gossip</p></h4>
+<br>
+
+<div class="container col-md-8 order-md-1" >
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
+     <div class="form-group" >
+           <%= label_tag 'Titre' %>
+           <%= text_field_tag 'title', @title, class: "form-control "  %>
+     </div>
+     <div class="form ">
+           <%= label_tag 'Contenu' %>
+           <%= text_area_tag 'content', @content, class: "form-control" %>
+     </div>
+     <br>
+     <div class="form-group ">
+           <%= submit_tag "Poster", class: 'btn btn-secondary btn-lg btn-submit' %>
+     </div>
+     <% end %>
+     </div>
+  </div>
+  </div>
+
+
+  </center>
