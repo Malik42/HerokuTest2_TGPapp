@@ -6,6 +6,7 @@
  <br><br>
 <p>Voici la liste des Users // Gossips</p>
 
+<% if current_user %>
 <div class="container col-md-8 order-md-1" >
 <div>
   <% @gossipall.each do |e| %>
@@ -23,17 +24,36 @@
                                 <% else %>
                                   <%= button_to 'Like', gossip_likes_path(e.id), method: :post %>
                                 <% end %></li>
-  </ul>
-</div>
+                              </ul>
+          </div>
 
-</div>
-
-
-
-
-  <br><br>
+              </div>
+              <br><br>
   <% end%>
 </div>
+<% else %>
+<div class="container col-md-8 order-md-1" >
+<div>
+  <% @gossipall.each do |e| %>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <%= e.user.first_name%> <%= e.user.last_name %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="<%=gossip_path(e.id)%>"><%= e.title %></a></li>
+    <li class="list-group-item" class="text-muted"><%=e.comments.count%> commentaires</li>
+    <li class="list-group-item"><%= e.likes.count %> <%= (e.likes.count) == 1 ? 'Likes' : 'Like'%></li>
+    
+                              </ul>
+          </div>
+
+              </div>
+              <br><br>
+  <% end%>
+</div>
+
+
+<% end%>
 
 
 </section>

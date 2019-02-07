@@ -17,6 +17,7 @@
 <% puts "arr_gossips_city => " %>
 <% puts arr_gossips_city %>
 
+<% if current_user %>
 <div>
   <% arr_gossips_city.flatten.each do |gossip| %>
   <div class="card" style="width: 18rem;">
@@ -27,20 +28,43 @@
     <li class="list-group-item"><a href="<%=gossip_path(gossip.id)%>"><%= gossip.title %></a></li>
     <li class="list-group-item"><%= gossip.likes.count %> <%= (gossip.likes.count) == 1 ? 'Like' : 'Likes'%></li>
     <li class="list-group-item"><% pre_like = gossip.likes.find { |like| like.user_id == current_user.id} %>
-                            <% if pre_like %>
-                              <%= button_to 'Unlike', gossip_like_path(gossip.id, pre_like), method: :delete %>
-                            <% else %>
-                              <%= button_to 'Like', gossip_likes_path(gossip.id), method: :post %>
-                            <% end %>
-                        </li>
-
-
+                                <% if pre_like %>
+                                  <%= button_to 'Unlike', gossip_like_path(gossip.id, pre_like), method: :delete %>
+                                <% else %>
+                                  <%= button_to 'Like', gossip_likes_path(gossip.id), method: :post %>
+                                <% end %></li>
   </ul>
 </div>
-
-
-
   <br><br>
   <%end%>
 </div>
+<% else %>
+<div>
+  <% arr_gossips_city.flatten.each do |gossip| %>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header">
+     <%= gossip.user.first_name %> <%= gossip.user.last_name %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="<%=gossip_path(gossip.id)%>"><%= gossip.title %></a></li>
+    <li class="list-group-item"><%= gossip.likes.count %> <%= (gossip.likes.count) == 1 ? 'Like' : 'Likes'%></li>
+    
+  </ul>
+</div>
+  <br><br>
+  <%end%>
+</div>
+
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
 </center>
