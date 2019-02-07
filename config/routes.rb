@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :city
   resources :gossip do
     resources :comment
+     resources :likes
   end
   get 'static_pages/error'
   get 'static_pages/succes'

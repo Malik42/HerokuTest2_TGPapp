@@ -19,8 +19,27 @@
       &nbsp; &nbsp; &nbsp;
       <a href="<%=gossip_path(g.id)%>" class="text-secondary btn-sm btn btn-outline-secondary" data-confirm="Sur ?" data-method="DELETE" >Supprimer</a>
 </li>
+    <li class="list-group-item"><%= g.likes.count %> <%= (g.likes.count) == 1 ? 'Like' : 'Likes'%></li>
+    <li class="list-group-item"><% pre_like = g.likes.find { |like| like.user_id == current_user.id} %>
+                                <% if pre_like %>
+                                  <%= button_to 'Unlike', gossip_like_path(g, pre_like), method: :delete %>
+                                <% else %>
+                                  <%= button_to 'Like', gossip_likes_path(g), method: :post %>
+                                <% end %></li>
+
+
+
   </ul>
 </div>
+
+
+
+
+
+
+
+
+
 
 <br>
 
